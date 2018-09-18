@@ -5,7 +5,8 @@
   "main": "algoQueNoComprendo.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node elServerQueNoComprendo.js"
+    "start": "node elServerQueNoComprendo.js",
+    "impri": "echo 'soy un jeropa'"
   },
   "repository": {
     "type": "git",

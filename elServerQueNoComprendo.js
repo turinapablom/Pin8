@@ -4,6 +4,6 @@ const PORT = process.env.PORT || 5000 // esto es un truquito para que heroku le 
 
 app.get('/', (req, res) => res.send('que mirás!'))
 
-app.get('/telescopio', (req, res) => res.send('estrelladoo'))
+app.get('/telescopio', (req, res) => res.sendfile('./html/tokio.html'))
 
 app.listen(PORT, () => console.log('nuestro server está escuchando en el puerto 5000!'))

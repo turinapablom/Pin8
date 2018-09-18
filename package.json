@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000P\u0000i\u0000n\u00008\u0000\r\u0000 \u0000",
+  "main": "algoQueNoComprendo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node elServerQueNoComprendo.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turinapablom/Pin8.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/turinapablom/Pin8/issues"
+  },
+  "homepage": "https://github.com/turinapablom/Pin8#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

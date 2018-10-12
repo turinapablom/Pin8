@@ -2,9 +2,8 @@
 <html>
 
     <head>
-        
+
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
         integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
         crossorigin=""/>
@@ -17,21 +16,13 @@
 
     </head>
 
-
-
-
 <body>
     <!-- el mapeeta -->
     <div id="mapid" style="width: 600px; height: 400px; position: relative;"></div>
 
-
-
-
-    
     <script type="text/javascript">
 
         var mymap = L.map('mapid').setView([-32, -60], 13);
-        // var marker = L.marker([latitud, longitud]).addTo(mymap);
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
@@ -39,36 +30,36 @@
             'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             id: 'mapbox.streets'
         }).addTo(mymap);
-        
 
-        
+
         let latitude
         let longitude
         let accuracy
+        let getPosition = function (options) {
+            return new Promise(function (resolve, reject) {
+                navigator.geolocation.getCurrentPosition(resolve, reject, options)
+            })
+        }
 
-        navigator.geolocation.getCurrentPosition(function(location) {
-            latitude=location.coords.latitude;
-            longitude=location.coords.longitude;
-            accuracy=location.coords.accuracy;
-        });
-
-        axios.post('/calculador', {
-            latitude: latitude,
-            longitude: longitude,
-            accuracy: accuracy,
+        getPosition()
+        .then((location) => {
+            latitude = location.coords.latitude
+            longitude = location.coords.longitude
+            accuracy = location.coords.accuracy
+            return axios({
+                method: 'post',
+                url: '/calculador',
+                data: {
+                    latitud: latitude,
+                    longitud: longitude,
+                }
+            })
         })
         .then(function (response) {
             for (let index = 0; index < response.data.length; index++) {
                 var marker = L.marker([response.data[index].latitud, response.data[index].longitud]).addTo(mymap);
             }
-
         })
-        
-        .catch(function (error) {
-            console.log(error);
-        });
-
-
 
     </script>
 </body>

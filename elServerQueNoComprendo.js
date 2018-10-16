@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-let posiciones = [posic1, posic2, posic3]
+//let posiciones = [posic1, posic2, posic3]
 
 app.get('/', (req, res) => res.sendfile('./html/gps.html'))
 

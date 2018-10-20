@@ -23,7 +23,7 @@ app.post('/calculador', (request, response) => {
     posiciones[ip] = request.body
     
     console.log(posiciones)
-    return response.send(Object.values())
+    return response.send(Object.values(posiciones))
  
 })
 

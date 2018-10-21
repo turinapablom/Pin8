@@ -21,10 +21,10 @@ app.post('/calculador', (request, response) => {
     //console.log(request)
     var ip = request.connection.remoteAddress
     posiciones[ip] = request.body
-    
+
     console.log(posiciones)
     return response.send(Object.values(posiciones))
- 
+
 })
 
 

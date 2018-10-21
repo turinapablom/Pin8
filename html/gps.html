@@ -18,6 +18,7 @@
     </head>
 
 <body>
+        <p id="demo"></p>
     <!-- el mapeeta -->
     <style>
     body {
@@ -53,17 +54,23 @@
         let latitude
         let longitude
         let accuracy
+        let LocalTime
+        var d
         let getPosition = function (options) {
             return new Promise(function (resolve, reject) {
                 navigator.geolocation.getCurrentPosition(resolve, reject, options)
             })
         }
+        
 
+        function intervalear () {
         getPosition()
         .then((location) => {
             latitude = location.coords.latitude
             longitude = location.coords.longitude
             accuracy = location.coords.accuracy
+            d = new Date();
+            LocalTime = d.toLocaleTimeString()
             return axios({
                 method: 'post',
                 url: '/calculador',
@@ -77,10 +84,15 @@
             for (let index = 0; index < response.data.length; index++) {
                 var marker = L.marker([response.data[index].latitud, response.data[index].longitud]).addTo(mymap);
             }
-
-            marker.bindPopup(`Latitud: ${latitude} Longitud: ${longitude}`);
+           marker.bindPopup(`Latitud: ${latitude} Longitud: ${longitude} Hora: ${LocalTime}`).openPopup();
+            
         })
+        console.log("intervaleando!");
+    };
 
+    var myVar = setInterval(intervalear ,300000);
+    
+    
     </script>
 </body>
 

@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
         integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
         crossorigin=""/>
-        
+
 
         <!-- Make sure you put this AFTER Leaflet's CSS -->
         <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
@@ -29,7 +29,7 @@
     height: 100%;
     width: 100vw;
     }
-    
+
     </style>
 
     <div id="mapid" ></div>
@@ -38,7 +38,7 @@
 
         var mymap = L.map('mapid').setView([-32, -60], 7, false);
 
-        
+
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
             maxNativeZoom: 20,
@@ -61,7 +61,7 @@
                 navigator.geolocation.getCurrentPosition(resolve, reject, options)
             })
         }
-        
+
 
         function intervalear () {
         getPosition()
@@ -85,14 +85,14 @@
                 var marker = L.marker([response.data[index].latitud, response.data[index].longitud]).addTo(mymap);
             }
            marker.bindPopup(`Latitud: ${latitude} Longitud: ${longitude} Hora: ${LocalTime}`).openPopup();
-            
+
         })
         console.log("intervaleando!");
     };
+    intervalear() // para que se ejecute la primera vez al toque
+    var myVar = setInterval(intervalear ,1000 * 60);
 
-    var myVar = setInterval(intervalear ,300000);
-    
-    
+
     </script>
 </body>
 

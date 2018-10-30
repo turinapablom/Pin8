@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>Carousel Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+  crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+
+
+
+  </head>
+  <body>
+
+
+ponerNombre, nombreMascota, idUsuarioReferente
+
+
+<p>Click the button to display the value of the value attribute of the text field.</p>
+
+<p><input type="text" id="ponerNombre" value="Tu Nombre"></p>
+<p><input type="text" id="nombreMascota" value="nombre Mascota"></p>
+<p><input type="text" id="idUsuarioReferente" value="id Usuario Referente"></p>
+
+
+
+<button onclick="botonCreaUsuario()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+
+
+
+
+
+    let usuarios = {
+        1: { // 1 es el id de Ale
+            puntos: 0,
+            persona: {
+                ultimasCoord: {
+                    lat: 123,
+                    long: 321,
+                    accuracy: 12,
+                    timestamp: '123443534'
+                },
+                nombre: 'Alejandro',
+                cadenaReferentes: [1]
+            },
+            mascota: {
+                nombre: 'esta',
+            },
+        }
+    }
+
+    // console.log(Object.keys(usuarios).length)
+
+    function addUser(usuarios, ponerNombre, nombreMascota, idUsuarioReferente) {
+        let numeroUsuario = Object.keys(usuarios).length + 1
+
+        usuarios[numeroUsuario] = {
+            puntos: 0,
+            persona: {
+                ultimasCoord: {},
+                nombre: ponerNombre,
+                cadenaReferentes: [idUsuarioReferente],
+            },
+            mascota: {
+                nombre: nombreMascota,
+            },
+        }
+
+        usuarios[numeroUsuario].persona.cadenaReferentes.push(numeroUsuario)
+    }
+
+    function botonCreaUsuario() {
+        var nombreform = document.getElementById("ponerNombre").value;
+        var mascotaForm = document.getElementById("nombreMascota").value;
+        var referenteForm = document.getElementById("idUsuarioReferente").value;
+        addUser(usuarios, nombreform, mascotaForm, referenteForm)
+        console.log(usuarios)
+    }
+
+   // addUser(usuarios, 'Pablo', 'Bugie', 1)
+
+
+
+
+    function addLocation(userId, ponerLat, ponerLong) {
+
+        usuarios[userId] = {
+            persona: {
+                ultimasCoord: {
+                    lat: ponerLat,
+                    long: ponerLong,
+                    accuracy: 12,
+                    timestamp: Date.now()
+                },
+            },
+        }
+    }
+
+   // addLocation(2, 222, 22222222)
+    // console.log(usuarios)
+    // console.log(usuarios['2'].persona.ultimasCoord, 'esta es la bomba')
+
+    function getCoordinatesArray(usuarios) {
+        let todasCoordenadas = []
+        const usuariosAArray = Object.values(usuarios)
+
+        for (i = 0; i < usuariosAArray.length; i++) {
+            let cordenadasPersona = []
+            cordenadasPersona.push(usuariosAArray[i].persona.ultimasCoord.lat)
+            cordenadasPersona.push(usuariosAArray[i].persona.ultimasCoord.long)
+            todasCoordenadas.push(cordenadasPersona)
+        }
+
+        return todasCoordenadas
+    }
+
+   // console.log(getCoordinatesArray(usuarios))
+
+
+// hacer una página en la que puedas escribir los datos que requiere addUser y cuando apretás un botón,
+// llame a la función addUser y le pase los datos que están escritos en los inputs
+
+// hacer un input que te deje poner tu propio id. La página cada 30 segundos te pide la ubicación
+//  Y con la ubicación u el id llama a la función addLocation y le pasa los datos que necesita
+
+// crear un mapa de leaflet
+// poblar el objeto usuarios con algunos usuarios falsos que tengan posiciones
+// ejecutar getCoordinatesArray y con lo que te devuelve generar Markers para todos los usuarios con ubicación
+
+//# ·······························##
+//# BONUS multi level marketing:   ##
+//# ·······························##
+// #hervalife #tengounaideaparavos #setupropiojefe
+
+// addUser le suma un punto al usuario referente, y también al usuario referente del referente
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+   
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"></script>
+
+ 
+  </body>
+</html>

@@ -23,9 +23,6 @@
 
 ponerNombre, nombreMascota, idUsuarioReferente
 
-
-<p>Click the button to display the value of the value attribute of the text field.</p>
-
 <p><input type="text" id="ponerNombre" value="Tu Nombre"></p>
 <p><input type="text" id="nombreMascota" value="nombre Mascota"></p>
 <p><input type="text" id="idUsuarioReferente" value="id Usuario Referente"></p>
@@ -66,19 +63,22 @@ ponerNombre, nombreMascota, idUsuarioReferente
     function addUser(usuarios, ponerNombre, nombreMascota, idUsuarioReferente) {
         let numeroUsuario = Object.keys(usuarios).length + 1
 
+        let cadena = usuarios[idUsuarioReferente].persona.cadenaReferentes
+        let cadenaDup = cadena.slice(0)
+        cadenaDup.push(numeroUsuario)
         usuarios[numeroUsuario] = {
             puntos: 0,
             persona: {
                 ultimasCoord: {},
                 nombre: ponerNombre,
-                cadenaReferentes: [idUsuarioReferente],
+                cadenaReferentes: cadenaDup,
             },
             mascota: {
                 nombre: nombreMascota,
             },
         }
+        usuarios[idUsuarioReferente].puntos ++
 
-        usuarios[numeroUsuario].persona.cadenaReferentes.push(numeroUsuario)
     }
 
     function botonCreaUsuario() {
@@ -95,16 +95,11 @@ ponerNombre, nombreMascota, idUsuarioReferente
 
 
     function addLocation(userId, ponerLat, ponerLong) {
-
-        usuarios[userId] = {
-            persona: {
-                ultimasCoord: {
-                    lat: ponerLat,
-                    long: ponerLong,
-                    accuracy: 12,
-                    timestamp: Date.now()
-                },
-            },
+        usuarios[userId].persona.ultimasCoord = {
+            lat: ponerLat,
+            long: ponerLong,
+            accuracy: 12,
+            timestamp: Date.now()
         }
     }
 
@@ -163,7 +158,7 @@ ponerNombre, nombreMascota, idUsuarioReferente
 
 
 
-   
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
   crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -171,6 +166,6 @@ ponerNombre, nombreMascota, idUsuarioReferente
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
   crossorigin="anonymous"></script>
 
- 
+
   </body>
 </html>

@@ -25,7 +25,7 @@ function addUser(usuarios, ponerNombre, nombreMascota, idUsuarioReferente) {
         persona: {
             ultimasCoord: {},
             nombre: ponerNombre,
-            cadenaReferentes: [idUsuarioReferente],
+            cadenaReferentes: [parseInt(idUsuarioReferente)],
         },
         mascota: {
             nombre: nombreMascota,

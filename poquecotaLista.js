@@ -31,7 +31,7 @@ function addUser(usuarios, ponerNombre, nombreMascota, idUsuarioReferente) {
             nombre: nombreMascota,
         },
     }
-
+    usuarios[idUsuarioReferente].puntos++
     usuarios[numeroUsuario].persona.cadenaReferentes.push(numeroUsuario)
 }
 
@@ -56,6 +56,7 @@ function creaLista() {
         item.innerHTML = `${usuario.persona.nombre} y tiene una mascota llamada ${usuario.mascota.nombre}`
         console.log(usuario)
         liste.appendChild(item)
+
     }
 }
 

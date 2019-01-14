@@ -20,6 +20,11 @@ let usuarios = {
 function addUser(usuarios, ponerNombre, nombreMascota, idUsuarioReferente) {
     let numeroUsuario = Object.keys(usuarios).length + 1
 
+    if(!Object.keys(usuarios).includes(idUsuarioReferente)){
+        alert("No existe")
+        return
+    }
+
     usuarios[numeroUsuario] = {
         puntos: 0,
         persona: {
@@ -31,6 +36,7 @@ function addUser(usuarios, ponerNombre, nombreMascota, idUsuarioReferente) {
             nombre: nombreMascota,
         },
     }
+    
     usuarios[idUsuarioReferente].puntos++
     usuarios[numeroUsuario].persona.cadenaReferentes.push(numeroUsuario)
 }
@@ -39,7 +45,10 @@ function botonCreaUsuario() {
     var nombreform = document.getElementById("ponerNombre").value;
     var mascotaForm = document.getElementById("nombreMascota").value;
     var referenteForm = document.getElementById("idUsuarioReferente").value;
+   
     addUser(usuarios, nombreform, mascotaForm, referenteForm)
+   
+        
     console.log(usuarios)
     creaLista()
 }
@@ -53,7 +62,7 @@ function creaLista() {
     for (const [id, usuario] of Object.entries(usuarios)) {
         let item = document.createElement("li")
 
-        item.innerHTML = `${usuario.persona.nombre} y tiene una mascota llamada ${usuario.mascota.nombre}`
+        item.innerHTML = `${usuario.persona.nombre} y tiene una mascota llamada ${usuario.mascota.nombre} los puntos acumulados son ${usuario.puntos}`
         console.log(usuario)
         liste.appendChild(item)
 

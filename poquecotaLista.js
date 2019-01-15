@@ -25,6 +25,11 @@ function addUser(usuarios, ponerNombre, nombreMascota, idUsuarioReferente) {
         return
     }
 
+   
+  //  for (const nombre of Object.entries(ponerNombre)) {
+
+    //}
+
     usuarios[numeroUsuario] = {
         puntos: 0,
         persona: {
@@ -39,6 +44,11 @@ function addUser(usuarios, ponerNombre, nombreMascota, idUsuarioReferente) {
     
     usuarios[idUsuarioReferente].puntos++
     usuarios[numeroUsuario].persona.cadenaReferentes.push(numeroUsuario)
+
+    if(!Object.values(usuarios).includes(nombreMascota)){
+        alert("Elige otro nombre")
+        return
+    }
 }
 
 function botonCreaUsuario() {
@@ -51,6 +61,7 @@ function botonCreaUsuario() {
         
     console.log(usuarios)
     creaLista()
+    //creaRanking()
 }
 
 
@@ -67,8 +78,25 @@ function creaLista() {
         liste.appendChild(item)
 
     }
-}
 
+    
+}
+//function creaRanking(){
+   // let rankinge = document.getElementById("ranking");
+  //  rankinge.innerHTML = '';
+
+    //for (const [puntos, punto] of Object.entries(usuarios)){
+       // console.log(Math.max(puntos))
+
+      //  let it = document.createElement("li")
+
+       // it.innerHTML = `lala y ${usuarios.puntos}`
+      //  console.log(puntos)
+      //  rankinge.appendChild(it)
+    //}
+
+
+//}
 
 function addLocation(userId, ponerLat, ponerLong) {
 
